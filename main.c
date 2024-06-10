@@ -60,7 +60,6 @@ inline void initCT()
   vdpmemcpy(gColor, ct, CTLEN);
 }
 
-
 inline void fillSit(int sitreg, int col, int row)
 {
   int sitaddr = sitreg * SIT_OFFSET;
@@ -140,6 +139,7 @@ unsigned int game()
   y = 111;
   yv = 0;
   viz.x0=1;
+  
 
   set_graphics(VDP_SPR_8x8MAG);
 
@@ -151,7 +151,7 @@ unsigned int game()
   VDP_SET_REGISTER(VDP_REG_SIT, SIT1); //Name Table (Register 2) * 400 (Hex)
   gImage = SIT1 * SIT_OFFSET;
   bbsit = SIT2;
-  VDP_SET_REGISTER(VDP_REG_COL, 0x00); //Color
+  VDP_SET_REGISTER(VDP_REG_COL, 0x00); //Color - black
   VDP_SET_REGISTER(VDP_REG_SAL, 0x27);
   gSprite = 0x27 * 0x80;
 
@@ -163,6 +163,7 @@ unsigned int game()
     fillSit(SIT1, 0, f * 3);
     fillSit(SIT2, 1, f * 3);
   }
+
 
   sprite(0, DINOBODY, COLOR_WHITE, 100, 10);
   sprite(1, DINOHEADRIGHT, COLOR_WHITE, 100, 2);
