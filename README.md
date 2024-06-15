@@ -1,6 +1,6 @@
-# libti99-helloworld
+# libti99-helloscrl
 
-This is a simple helloworld application in EA5 format suitable from running from Editor/Assembler or calling using call tipi on a metal TI994a with at [tipi](https://github.com/jedimatt42/tipi/wiki) installed. 
+This is a simple helloscrl application in EA5 format suitable from running from Editor/Assembler or calling using call tipi on a metal TI994a with at [tipi](https://github.com/jedimatt42/tipi/wiki) installed. 
 
 Just a plug, if you need a tipi, arcadeshopper was very helpful giving me some pointers and helping me troubleshoot things, so I recommend getting one from his [store](https://www.arcadeshopper.com/wp/store/#!//p/103690282).
 ## Build Tools Installation
@@ -23,13 +23,13 @@ Depending on your environment, you may have to stop makeinfo from happening. Thi
     mkdir -p objects
     tms9900-gcc -c main.c -std=gnu99 -O2 -Werror --save-temp -I/range/share/software/ti994a/libti99 -DBANK_STACK_SIZE=10 -o objects/main.o
     mv *.i *.s objects/
-    tms9900-ld objects/crt0_ea5.o objects/main.o --script=linkfile -L/range/share/software/ti994a/libti99 -lti99 -o helloworld.elf -Map=mapfile
+    tms9900-ld objects/crt0_ea5.o objects/main.o --script=linkfile -L/range/share/software/ti994a/libti99 -lti99 -o helloscrl.elf -Map=mapfile
     rm -f upper.bin lower.bin objects/HELLOWORL? helloworl?.tfi
-    tms9900-objcopy -O binary -j .text helloworld.elf upper.bin
-    tms9900-objcopy -O binary -j .data helloworld.elf lower.bin
-    python ./ea5split.py A000:upper.bin 2000:lower.bin objects/HELLOWORLD
+    tms9900-objcopy -O binary -j .text helloscrl.elf upper.bin
+    tms9900-objcopy -O binary -j .data helloscrl.elf lower.bin
+    python ./ea5split.py A000:upper.bin 2000:lower.bin objects/HELLOSCRL
     ----------------1:1--
-    filename: objects/HELLOWORLD
+    filename: objects/HELLOSCRL
     flag: 0xffff
     len: 0x7f2
     addr: 0xa000
@@ -41,12 +41,12 @@ Depending on your environment, you may have to stop makeinfo from happening. Thi
     xdm99.py -T objects/HELLOWORL? -f PROGRAM
     for i in helloworl?.tfi; do cp $i `basename $i .tfi`; done
     rm -f .DSK
-    xdm99.py HELLOWORLD.DSK --initialize DSDD40T
-    xdm99.py HELLOWORLD.DSK -t -a helloworl?
-    xdm99.py HELLOWORLD.DSK
-    HELLOWORLD:     13 used  1427 free   360 KB  2S/2D 40T  18 S/T
+    xdm99.py HELLOSCRL.DSK --initialize DSDD40T
+    xdm99.py HELLOSCRL.DSK -t -a helloworl?
+    xdm99.py HELLOSCRL.DSK
+    HELLOSCRL:     13 used  1427 free   360 KB  2S/2D 40T  18 S/T
     ----------------------------------------------------------------------------
-    HELLOWORLD    9  PROGRAM       2040 B              2021-06-03 18:58:16 C   
+    HELLOSCRL    9  PROGRAM       2040 B              2021-06-03 18:58:16 C   
     HELLOWORLE    2  PROGRAM         26 B              2021-06-03 18:58:16 C   
 
 ## Thanks
